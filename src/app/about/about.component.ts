@@ -14,12 +14,11 @@ export class AboutComponent implements OnInit {
   leader: Leader;
   leaders: Leader[];
 
-  constructor(private leaderService: LeaderService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private leaderservice: LeaderService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
-  	let id = this.route.snapshot.params['id'];
-  	this.leader = this.leaderService.getLeader(id);
-  	this.leaders = this.leaderService.getLeaders();
+  	this.leaderservice.getLeaders()
+      .then(leaders => this.leaders = leaders);
   }
 
   goBack(): void {
